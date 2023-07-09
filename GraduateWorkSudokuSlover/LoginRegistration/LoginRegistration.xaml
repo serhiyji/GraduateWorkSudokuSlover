@@ -1,0 +1,85 @@
+﻿<Window x:Class="GraduateWorkSudokuSlover.LoginRegistration.LoginRegistration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraduateWorkSudokuSlover.LoginRegistration"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+        Title="Вхід / Реєстрація" Height="450" Width="350">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="2"></Setter>
+        </Style>
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+
+        <StackPanel>
+            <GroupBox Header="Вхід" Margin="5" Padding="5">
+                <StackPanel>
+                    <TextBlock Margin="2" TextAlignment="Center">Логін</TextBlock>
+                    <DockPanel LastChildFill="True">
+                        <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
+                                Background="{Binding Path=LoginLine_L, UpdateSourceTrigger=PropertyChanged}">
+
+                        </Border>
+                        <TextBox
+                            Text="{Binding Path=Login_L, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+                    </DockPanel>
+                    <TextBlock Margin="7" TextAlignment="Center">Пароль</TextBlock>
+                    <DockPanel>
+                        <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
+                        Background="{Binding Path=PasswordLine_L, UpdateSourceTrigger=PropertyChanged}">
+
+                        </Border>
+                        <PasswordBox x:Name="passwordL" PasswordChar="*"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <Button Margin="0, 5" Padding="2" 
+                    Command="{Binding Path=LoginCmd, UpdateSourceTrigger=PropertyChanged}">Ввійти</Button>
+                    </DockPanel>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Реєстрація" Margin="5" Padding="5">
+                <StackPanel>
+                    <TextBlock Margin="2" TextAlignment="Center">Логін</TextBlock>
+                    <DockPanel LastChildFill="True">
+                        <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
+                                Background="{Binding Path=LoginLine_R, UpdateSourceTrigger=PropertyChanged}">
+
+                        </Border>
+                        <TextBox
+                            Text="{Binding Path=Login_R, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+                    </DockPanel>
+                    <TextBlock Margin="7" TextAlignment="Center">Пароль</TextBlock>
+                    <DockPanel>
+                        <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
+                        Background="{Binding Path=PasswordLine_R, UpdateSourceTrigger=PropertyChanged}">
+
+                        </Border>
+                        <PasswordBox x:Name="passwordR" PasswordChar="*"/>
+
+                    </DockPanel>
+                    <TextBlock Margin="7" TextAlignment="Center">Пошта</TextBlock>
+                    <DockPanel>
+                        <Border Height="2px" DockPanel.Dock="Bottom" Margin="5, 1"
+                        Background="{Binding Path=EmailLine_R, UpdateSourceTrigger=PropertyChanged}">
+
+                        </Border>
+                        <TextBox Text="{Binding Path=Email_R, UpdateSourceTrigger=PropertyChanged}">
+
+                        </TextBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <Button Margin="0, 5" Padding="2" 
+                    Command="{Binding Path=RegistrationCmd, UpdateSourceTrigger=PropertyChanged}">Зареєструватись</Button>
+                    </DockPanel>
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
+    </DockPanel>
+</Window>

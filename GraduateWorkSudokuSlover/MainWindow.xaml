@@ -1,0 +1,302 @@
+﻿<Window x:Class="GraduateWorkSudokuSlover.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraduateWorkSudokuSlover"
+        d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+        mc:Ignorable="d"
+        Title="Головне вікно" Height="650" Width="500">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Path=UpCmd}" Key="W"/>
+        <KeyBinding Command="{Binding Path=UpCmd}" Key="Up"/>
+        <KeyBinding Command="{Binding Path=DownCmd}" Key="S"/>
+        <KeyBinding Command="{Binding Path=DownCmd}" Key="Down"/>
+        <KeyBinding Command="{Binding Path=LeftCmd}" Key="A"/>
+        <KeyBinding Command="{Binding Path=LeftCmd}" Key="Left"/>
+        <KeyBinding Command="{Binding Path=RightCmd}" Key="D"/>
+        <KeyBinding Command="{Binding Path=RightCmd}" Key="Right"/>
+
+        <KeyBinding Command="{Binding Path=NumPad0Cmd}" Key="NumPad0"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad1Cmd}" Key="NumPad1"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad2Cmd}" Key="NumPad2"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad3Cmd}" Key="NumPad3"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad4Cmd}" Key="NumPad4"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad5Cmd}" Key="NumPad5"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad6Cmd}" Key="NumPad6"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad7Cmd}" Key="NumPad7"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad8Cmd}" Key="NumPad8"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad9Cmd}" Key="NumPad9"></KeyBinding>
+
+        <KeyBinding Command="{Binding Path=NumPad0Cmd}" Key="D0"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad0Cmd}" Key="Delete"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad1Cmd}" Key="D1"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad2Cmd}" Key="D2"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad3Cmd}" Key="D3"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad4Cmd}" Key="D4"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad5Cmd}" Key="D5"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad6Cmd}" Key="D6"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad7Cmd}" Key="D7"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad8Cmd}" Key="D8"></KeyBinding>
+        <KeyBinding Command="{Binding Path=NumPad9Cmd}" Key="D9"></KeyBinding>
+
+        <KeyBinding Command="{Binding Path=NewRandomSudokuCmd}" Modifiers="Ctrl+Shift" Key="N"></KeyBinding>
+
+        <KeyBinding Command="{Binding Path=OpenCloseListSudokusCmd}" Key="Esc"></KeyBinding>
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Command="{Binding Path=NewRandomSudokuCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Згенерувати судоку"></MenuItem>
+                <Separator/>
+                <MenuItem Command="{Binding Path=OpenSudokuFromFileCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Відкрити судоку з файлу"></MenuItem>
+                <MenuItem Command="{Binding Path=SaveSudokuInFileCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Зберегти судоку в файл"></MenuItem>
+                <MenuItem Command="{Binding Path=SaveAsSudokuInFileCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Зберегти Як судоку в файл"></MenuItem>
+                <Separator/>
+                <MenuItem Command="{Binding Path=OpenSudokuFromDataBaseCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Відкрити судоку з бази даних"></MenuItem>
+                <MenuItem Command="{Binding Path=SaveSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Зберегти судоку в базу даних"></MenuItem>
+                <MenuItem Command="{Binding Path=SaveAsSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Зберегти Як судоку в базу даних"></MenuItem>
+                <Separator/>
+                <MenuItem Command="{Binding Path=UpdateListSavingSudukusCmd, UpdateSourceTrigger=PropertyChanged}"
+                          Header="Оновити список збережених судоку"></MenuItem>
+                <Separator/>
+                <MenuItem Command="{Binding Path=QuitCmd, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Вийти"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Курсор">
+                <MenuItem Command="{Binding Path=UpCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Вверх"></MenuItem>
+                <MenuItem Command="{Binding Path=DownCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Вниз"></MenuItem>
+                <MenuItem Command="{Binding Path=LeftCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Вліво"></MenuItem>
+                <MenuItem Command="{Binding Path=RightCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Вправо"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Акаунт">
+                <MenuItem Command="{Binding Path=SignInUpCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Ввійти"></MenuItem>
+                <MenuItem Command="{Binding Path=SignInUpCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Зареєструватись"></MenuItem>
+                <MenuItem Command="{Binding Path=SignOutCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Вийти"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Рішення">
+                <MenuItem Command="{Binding Path=NextHintCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Наступне рішення"></MenuItem>
+                <MenuItem Command="{Binding Path=ExecuteCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Застосувати рішення"></MenuItem>
+                <MenuItem Command="{Binding Path=SloveUpToCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Вирішити до кінця"></MenuItem>
+                <MenuItem Command="{Binding Path=CancelCmd, UpdateSourceTrigger=PropertyChanged}" 
+                          Header="Відмінити рішення"></MenuItem>
+                <MenuItem Command="{Binding Path=ClearMatrixCmd, UpdateSourceTrigger=PropertyChanged}"
+                          Header="Очистити матрицю"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <DockPanel>
+
+            <!--верх-->
+            <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                <Button Content="{Binding Path=TextBtnOpenCloseSudoku, UpdateSourceTrigger=PropertyChanged}"
+                    Command="{Binding Path=OpenCloseListSudokusCmd, UpdateSourceTrigger=PropertyChanged}"></Button>
+                <Button DockPanel.Dock="Right" Command="{Binding Path=SignOutCmd, UpdateSourceTrigger=PropertyChanged}">Вийти</Button>
+                <Button DockPanel.Dock="Right" Command="{Binding Path=SignInUpCmd, UpdateSourceTrigger=PropertyChanged}">Ввійти / Реєстрація</Button>
+            </DockPanel>
+
+            <!--низ-->
+            <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
+                <Grid DockPanel.Dock="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Column="0" Grid.Row="0"
+                        Command="{Binding Path=NextHintCmd, UpdateSourceTrigger=PropertyChanged}">Наступне рішення</Button>
+                    <Button Grid.Column="1" Grid.Row="0"
+                        Command="{Binding Path=ExecuteCmd, UpdateSourceTrigger=PropertyChanged}">Застосувати рішення</Button>
+                    <Button Grid.Column="0" Grid.Row="1"
+                            Command="{Binding Path=SloveUpToCmd, UpdateSourceTrigger=PropertyChanged}">Вирішити  до  кінця</Button>
+
+                    <UniformGrid Grid.Row="1" Grid.Column="1" Columns="2" Rows="1">
+                        <Button Grid.Column="0" 
+                                Command="{Binding Path=CancelCmd, UpdateSourceTrigger=PropertyChanged}">Відмінити</Button>
+                        <Button Grid.Column="1" 
+                                Command="{Binding Path=OpenDescriptionCmd, UpdateSourceTrigger=PropertyChanged}">Інфо</Button>
+                    </UniformGrid>
+                </Grid>
+                <TextBlock TextAlignment="Center" Margin="5"
+                           Text="{Binding Path=Intersection.NameMethodSlover, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            </DockPanel>
+
+            <Grid Margin="5" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.ColumnSpan="3"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid>
+                        <!--матриця-->
+                        <Grid>
+                            <ItemsControl 
+                                ItemsSource="{Binding Path=Points, UpdateSourceTrigger=PropertyChanged}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Border
+                                                    BorderBrush="{Binding Path=Selected, UpdateSourceTrigger=PropertyChanged}" BorderThickness="4"
+                                                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                        >
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                           FontSize="25"
+                                                                    Text="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                                                    ></TextBlock>
+                                            </Border>
+
+                                            <UniformGrid Columns="3" Rows="3" Margin="2">
+                                                <Border CornerRadius="999" Background="{Binding Path=PossibleValues[0], UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBlock TextAlignment="Center"
+                                                    Text="{Binding Path=Val1, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                </Border>
+                                                <Border CornerRadius="999" Background="{Binding Path=PossibleValues[1], UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBlock TextAlignment="Center"
+                                                    Text="{Binding Path=Val2, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                </Border>
+                                                <Border CornerRadius="999" Background="{Binding Path=PossibleValues[2], UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBlock TextAlignment="Center"
+                                                    Text="{Binding Path=Val3, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                </Border>
+                                                <Border CornerRadius="999" Background="{Binding Path=PossibleValues[3], UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBlock TextAlignment="Center"
+                                                    Text="{Binding Path=Val4, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                </Border>
+                                                <Border CornerRadius="999" Background="{Binding Path=PossibleValues[4], UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBlock TextAlignment="Center"
+                                                    Text="{Binding Path=Val5, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                </Border>
+                                                <Border CornerRadius="999" Background="{Binding Path=PossibleValues[5], UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBlock TextAlignment="Center"
+                                                    Text="{Binding Path=Val6, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                </Border>
+                                                <Border CornerRadius="999" Background="{Binding Path=PossibleValues[6], UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBlock TextAlignment="Center"
+                                                    Text="{Binding Path=Val7, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                </Border>
+                                                <Border CornerRadius="999" Background="{Binding Path=PossibleValues[7], UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBlock TextAlignment="Center"
+                                                    Text="{Binding Path=Val8, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                </Border>
+                                                <Border CornerRadius="999" Background="{Binding Path=PossibleValues[8], UpdateSourceTrigger=PropertyChanged}">
+                                                    <TextBlock TextAlignment="Center"
+                                                    Text="{Binding Path=Val9, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                                </Border>
+                                            </UniformGrid>
+                                        </Grid>
+
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="9" Rows="9"></UniformGrid>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                            </ItemsControl>
+                        </Grid>
+                        <UniformGrid Columns="9" Rows="1">
+                            <Border BorderThickness="1, 1, 0.5, 1" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="0.5, 1, 0.5, 1" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="0.5, 1, 0.5, 1" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="0.5, 1, 0.5, 1" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="0.5, 1, 0.5, 1" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="0.5, 1, 0.5, 1" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="0.5, 1, 0.5, 1" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="0.5, 1, 0.5, 1" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="0.5, 1, 1, 1" BorderBrush="#404040"></Border>
+                        </UniformGrid>
+                        <UniformGrid Columns="1" Rows="9">
+                            <Border BorderThickness="1, 1, 1, 0.5" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="1, 0.5, 1, 0.5" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="1, 0.5, 1, 0.5" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="1, 0.5, 1, 0.5" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="1, 0.5, 1, 0.5" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="1, 0.5, 1, 0.5" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="1, 0.5, 1, 0.5" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="1, 0.5, 1, 0.5" BorderBrush="#404040"></Border>
+                            <Border BorderThickness="1, 0.5, 1, 0.5" BorderBrush="#404040"></Border>
+                        </UniformGrid>
+                        <UniformGrid Columns="1" Rows="3">
+                            <Border BorderThickness="2, 2, 2, 1" BorderBrush="Black"></Border>
+                            <Border BorderThickness="2, 1, 2, 1" BorderBrush="Black"></Border>
+                            <Border BorderThickness="2, 1, 2, 2" BorderBrush="Black"></Border>
+                        </UniformGrid>
+                        <UniformGrid Columns="3" Rows="1">
+                            <Border BorderThickness="2, 2, 1, 2" BorderBrush="Black"></Border>
+                            <Border BorderThickness="1, 2, 1, 2" BorderBrush="Black"></Border>
+                            <Border BorderThickness="1, 2, 2, 2" BorderBrush="Black"></Border>
+                        </UniformGrid>
+                    </Grid>
+                </Border>
+                <DockPanel Visibility="{Binding Path=VisibilityListSudokus, UpdateSourceTrigger=PropertyChanged}" 
+                           Margin="12" Grid.ColumnSpan="2">
+                    <UniformGrid DockPanel.Dock="Bottom" Columns="3" Rows="1">
+                        <Button Command="{Binding Path=OpenSudokuFromDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">Завантажити</Button>
+                        <Button Command="{Binding Path=SaveSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">Зберегти</Button>
+                        <Button Command="{Binding Path=DeleteItemFromSudokusCmd, UpdateSourceTrigger=PropertyChanged}">Видалити</Button>
+                    </UniformGrid>
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
+                        <Button DockPanel.Dock="Right"
+                            Command="{Binding Path=SaveAsSudokuInDataBaseCmd, UpdateSourceTrigger=PropertyChanged}">Збергти як</Button>
+                        <TextBox Margin="5" Padding="2" TextAlignment="Left"
+                                 Text="{Binding Path=nameSudokuInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    </DockPanel>
+                    <ListBox
+                    SelectedItem="{Binding Path=SelectedSudoku, UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSource="{Binding Path=Sudokus, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel HorizontalAlignment="Stretch" LastChildFill="True">
+                                    <TextBlock DockPanel.Dock="Right" Text="{Binding Path=_Time, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                    <TextBlock Text="{Binding Path=Name}"></TextBlock>
+
+                                </DockPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </Grid>
+
+        </DockPanel>
+    </DockPanel>
+</Window>
